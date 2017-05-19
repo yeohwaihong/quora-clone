@@ -17,6 +17,11 @@ end
 get '/profile' do
   @user = User.find(session["user_id"])
   erb :"users/show"
+end
 
-
+post '/ask_question' do
+  byebug
+  question = Question.new(user_id: session[:user_id], content: params[:question])
+  question.save
+  redirect '/profile'
 end

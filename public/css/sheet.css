@@ -80,3 +80,18 @@ input[type="password"] {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.modal {
+   top: 20%;
+}
+
+hr.style18:before {
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: #8c8b8b;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
+}
