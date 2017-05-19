@@ -21,6 +21,12 @@
 	</head>
 	<body>
 
+		<% x = User.find_by(id: session["user_id"]) %>
+		<% p x %>
+		<% p x.present? %>
+		<% if x.present? == false %>
+
+
 		<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
 	    <div class="navbar-header">
@@ -33,19 +39,41 @@
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-left">
-	        <li><a href="#read"><span class="glyphicon glyphicon-list-alt"></span>READ</a></li>
-	        <li><a href="#answer"><span class="glyphicon glyphicon-pencil"></span>ANSWER</a></li>
 				</ul>
 					<ul class="nav navbar-nav navbar-right">
-		 <li><a href="/new"><span class="glyphicon glyphicon-user"></span> SIGN UP</a></li>
-		 <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+						<li><a href="/new"><span class="glyphicon glyphicon-user "></span> SIGN UP</a></li>
+						<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
 
+<% else %>
 
+			<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#myPage">Kuery</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-left">
+						<li><a href="/profile">WELCOME <%= @user.first_name.upcase %>!</a></li>
+						<li><a href="#read"><span class="glyphicon glyphicon-list-alt"></span>READ</a></li>
+						<li><a href="#answer"><span class="glyphicon glyphicon-pencil"></span>ANSWER</a></li>
+					</ul>
+						<ul class="nav navbar-nav navbar-right">
+			 <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
+				<% end %>
 
 		<%= yield %>
 
