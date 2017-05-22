@@ -1,0 +1,23 @@
+<br />
+<br />
+<h4 class="answer-count">Top Stories For You</h4>
+<table>
+<tr>
+<% Answer.order('created_at DESC').each.with_index do |a, index| %>
+<td class='user_answer'>
+  <div class= "username_time">
+  Answer</div>
+  <h4><a href="/question/<%= a.question.id %>" class='question_content'><%= a.question.content %></a></h4>
+  <div class= "username_time">
+  <%= a.user.first_name %> answered <time class='timeago' datetime="<%= a.created_at.iso8601 %>"><%= a.created_at %></time></div>
+  <br /><div class= "answers-answered">
+    <%= a.answer %>
+  </div>
+  <br />
+  <input type="button" class="btn-vote" value="Upvote">
+  <input type="button" class="btn-vote" value="Downvote">
+  <br />
+</td>
+</tr>
+<% end %>
+</table>

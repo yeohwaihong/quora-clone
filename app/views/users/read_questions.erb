@@ -1,0 +1,79 @@
+
+<br />
+<br />
+<a class="ask-question-button" href="" data-toggle="modal" data-target="#myModal">What is your question?</a>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal for Questions-->
+    <form action="/ask_question" method="post">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"> <%= @user.first_name %> asks</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="question"></label>
+          <textarea class="form-control" placeholder="What is your question?" rows="5" id="question" name="question"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="submit-question-btn" type="submit" class="btn btn-primary">Ask Question</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<!-- Modal for Answers -->
+
+
+<hr class="style7">
+<h4 class="answer-count">Top Stories For You</h4>
+<table>
+<tr>
+<% Question.order('created_at DESC').each.with_index do |q, index| %>
+    <td class='user_question'>
+
+<div class= "username_time">Question · <%= q.user.first_name %> asked <time class='timeago' datetime="<%= q.created_at.iso8601 %>"><%= q.created_at %></time></div>
+<h4><a href="/question/<%= q.id %>" class='question_content'><%= q.content %></a></h4>
+<span type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myAnswer-<%= q.id %>">Answer</span>
+
+<div class="modal fade" id="myAnswer-<%= q.id %>" role="dialog">
+<div class="modal-dialog">
+  <form action="/answer_question/<%= q.id %>" method="post">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title"> <%= q.user.first_name %> asked</h4>
+      <%= q.content %>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="question"></label>
+        <textarea class="form-control" placeholder="What is your answer?" rows="5" id="answer" name="answer"></textarea>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button id="submit-answer-btn" type="submit" class="btn btn-primary">Submit Answer</button>
+    </div>
+  </div>
+</form>
+  </div>
+</div>
+<input type="button" class="btn-vote" value="Upvote">
+<input type="button" class="btn-vote" value="Downvote">
+    <br></td>
+</tr>
+
+
+<% end %>
+
+</table>
+
+
+<hr class="style7">

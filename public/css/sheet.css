@@ -1,3 +1,7 @@
+#main-content {
+  padding-top: 50px;
+}
+
 .colorgraph {
   height: 5px;
   border-top: 0;
@@ -24,8 +28,13 @@
     font-family: "brandon-grotesque","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.navbar li a, .navbar .navbar-brand {
+.navbar li a, .navbar {
     color: #fff !important;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: bold;
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
@@ -85,13 +94,115 @@ input[type="password"] {
    top: 20%;
 }
 
-hr.style18:before {
-  display: block;
-  content: "";
-  height: 30px;
-  margin-top: -31px;
-  border-style: solid;
-  border-color: #8c8b8b;
-  border-width: 0 0 1px 0;
-  border-radius: 20px;
+hr.style7 {
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover{background-color:#f5f5f5}
+
+.question_content {
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+
+.user_question {
+  font-size: 15px;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+    padding: 5px 5px;
+    font-size: 12;
+    line-height: 1.3333333;
+    border-radius: 6px;
+  }
+
+.btn-info {
+  border: 1px solid #f4425c;
+  color: #f4425c;
+  background-color: white;
+}
+
+.btn-info:hover {
+    color: #fff;
+    background-color: #f4425c;
+    border-color: #f4425c;
+  }
+
+.btn-vote {
+  padding: 5px 5px;
+  font-size: 12;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  border: 1px solid;
+  border-color: #2b6dad;
+  background-color: white;
+}
+
+.btn-vote:hover {
+  color: #fff;
+  background-color: #f4425c;
+  border-color: #f4425c;
+}
+
+.btn-default {
+  padding: 5px 5px;
+  font-size: 12;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  border: 1px solid;
+}
+
+.question_content {
+  color: black;
+}
+
+.question_content:hover, .question_content:visited, .question_content:link, .question_content:active {
+  color: black;
+}
+
+.ask-question-button {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: #000080;
+}
+
+.ask-question-button:hover, .ask-question-button:link, .ask-question-button:active {
+  text-decoration: none;
+  color: black;
+}
+
+.question-header {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+
+.stories-header {
+  color: #333;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.username_time {
+  color: #999;
+  font-size: 13px;
+}
+
+.answers-answered {
+  font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+  font-size: 15px;
 }
