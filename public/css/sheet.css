@@ -36,6 +36,10 @@
   color: #fff !important;
   font-weight: bold;
 }
+/*
+.profile-name {
+  min-width: 210px;
+}*/
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
     color: #f4425c !important;
@@ -152,6 +156,22 @@ tr:hover{background-color:#f5f5f5}
   background-color: white;
 }
 
+.vote {
+  display: inline-block;
+}
+
+.btn-primary {
+  padding: 5px 5px;
+  font-size: 12;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  border: 1px solid;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+
 .btn-vote:hover {
   color: #fff;
   background-color: #f4425c;
@@ -178,7 +198,7 @@ tr:hover{background-color:#f5f5f5}
   font-family: "Times New Roman", Times, serif;
   font-size: 30px;
   font-weight: bold;
-  color: #000080;
+  color: #f4425c;
 }
 
 .ask-question-button:hover, .ask-question-button:link, .ask-question-button:active {

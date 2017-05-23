@@ -81,12 +81,15 @@
 <!-- Modal content-->
 <div class="modal-content">
 <div class="modal-header">
+  <h4 class="modal-title"> Edit your question here: </h4>
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<div class="modal-footer">
     <form class="form question" method="post" action="/questions/<%= q.id %>/edit" role="form">
-      <input class="form-control input-lg" type="question" name="edit_input" placeholder="Edit question to"/>
+      <!-- <input class="form-control input-lg" type="question" name="edit_input" placeholder="Edit question to"/> -->
+      <textarea class="form-control" placeholder="What is your question?" rows="5" id="question" name="edit_input"></textarea>
 
   <!-- <div class="modal-footer"> -->
+  <div class="modal-footer">
+
       <input id="hidden" type="hidden" name="_method" value="patch">
         <button type="button" class="btn-cancel btn-default" data-dismiss="modal">Cancel</button>
         <button class="btn-cancel btn-default" type="submit" >Edit</button>
@@ -123,8 +126,14 @@
   </form>
     </div>
   </div>
-  <input type="button" class="btn-vote" value="Upvote">
-  <input type="button" class="btn-vote" value="Downvote">
+  <form class="vote" method ="post" action ="/question/<%= q.id %>/vote">
+  <button type="submit" class="btn-vote"><span class="glyphicon glyphicon-chevron-up"></span></button>
+  </form>
+  <% ss = QuestionVote.where(question_id: q.id, value: 'up').count - QuestionVote.where(question_id: q.id, value: 'down').count %>
+  <%= ss %>
+  <form class="vote" method ="post" action ="/question/<%= q.id %>/downvote">
+  <button type="submit" class="btn-vote"><span class="glyphicon glyphicon-chevron-down"></span></button>
+  </form>
       <br></td>
 </tr>
 
@@ -143,7 +152,7 @@
   <% @answer.order('created_at DESC').each.with_index do |a, index| %>
   <td class='user_answer'>
     <div class= "username_time">
-    Answer</div>
+    Answer ·</div>
     <h4><a href="/question/<%= a.question.id %>" class='question_content'><%= a.question.content %></a></h4>
     <div class= "username_time">
     <%= a.user.first_name %> answered <time class='timeago' datetime="<%= a.created_at.iso8601 %>"><%= a.created_at %></time></div>
@@ -151,8 +160,14 @@
       <%= a.answer %>
     </div>
     <br />
-    <input type="button" class="btn-vote" value="Upvote">
-    <input type="button" class="btn-vote" value="Downvote">
+    <form class="vote" method ="post" action ="/answer/<%= a.id %>/vote">
+    <button type="submit" class="btn-vote"><span class="glyphicon glyphicon-chevron-up"></span></button>
+    </form>
+    <% ss = AnswerVote.where(answer_id: a.id, value: 'up').count - AnswerVote.where(answer_id: a.id, value: 'down').count %>
+    <%= ss %>
+    <form class="vote" method ="post" action ="/answer/<%= a.id %>/downvote">
+    <button type="submit" class="btn-vote"><span class="glyphicon glyphicon-chevron-down"></span></button>
+    </form>
     <br />
 </td>
 </tr>

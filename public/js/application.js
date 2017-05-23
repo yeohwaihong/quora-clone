@@ -1,4 +1,3 @@
-console.log("asdasf")
 
 $(document).ready(function(){
   $('#submit-question-btn').click(function() {
@@ -7,4 +6,17 @@ $(document).ready(function(){
   });
 
   $('.timeago').timeago();
+
+  $('.profile-name').hover(
+    function(){
+      var a = $(this)
+      var width = a.css('width')
+      a.text('MY PROFILE')
+      $(this).css('width', width)
+    },
+    function(){
+      a = $(this)
+      a.text(a.data('initial-text'))
+    }
+  )
 })

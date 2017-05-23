@@ -21,6 +21,7 @@
 
 	</head>
 	<body>
+<div class="container">
 
 		<% x = User.find_by(id: session["user_id"]) %>
 
@@ -35,7 +36,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#myPage">Kuery</a>
+	      <a class="navbar-brand" href="/"><i class="fa fa-comments-o"></i>Kuery</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-left">
@@ -58,15 +59,15 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#myPage">Kuery</a>
+					<a class="navbar-brand" href="/"><i class="fa fa-comments-o"></i>Kuery</a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav navbar-left">
 						<% if current_user %>
-						<li><a href="/profile">WELCOME <%= current_user.first_name.upcase %>!</a></li>
+						<li><a class="profile-name" href="/profile" data-initial-text="WELCOME <%= current_user.first_name.upcase %>!">WELCOME <%= current_user.first_name.upcase %>!</a></li>
 						<% end %>
-						<li><a href="/read_questions"><span class="glyphicon glyphicon-list-alt"></span>READ</a></li>
-						<li><a href="/read_answers"><span class="glyphicon glyphicon-pencil"></span>ANSWER</a></li>
+						<li><a href="/read_questions"><span class="glyphicon glyphicon-list-alt"></span>TOP QUESTIONS</a></li>
+						<li><a href="/read_answers"><span class="glyphicon glyphicon-pencil"></span>TOP ANSWERS</a></li>
 					</ul>
 						<ul class="nav navbar-nav navbar-right">
 			 <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
@@ -88,6 +89,6 @@
 		</footer>
 
 
-
+</div>
 	</body>
 </html>

@@ -34,7 +34,7 @@
 <h4 class="answer-count">Top Stories For You</h4>
 <table>
 <tr>
-<% Question.order('created_at DESC').each.with_index do |q, index| %>
+<% Question.select("questions.*, SUM(CASE WHEN question_votes.value = 'up' THEN 1 WHEN question_votes.value = 'down' THEN -1 ELSE 0 END) vote_count").joins('LEFT JOIN question_votes ON questions.id = question_votes.question_id').group("questions.id").order("vote_count DESC").each.with_index do |q, index| %>
     <td class='user_question'>
 
 <div class= "username_time">Question · <%= q.user.first_name %> asked <time class='timeago' datetime="<%= q.created_at.iso8601 %>"><%= q.created_at %></time></div>
@@ -65,8 +65,14 @@
 </form>
   </div>
 </div>
-<input type="button" class="btn-vote" value="Upvote">
-<input type="button" class="btn-vote" value="Downvote">
+<form class="vote" method ="post" action ="/question/<%= q.id %>/vote">
+<button type="submit" class="btn-vote"><span class="glyphicon glyphicon-chevron-up"></span></button>
+</form>
+<% ss = QuestionVote.where(question_id: q.id, value: 'up').count - QuestionVote.where(question_id: q.id, value: 'down').count %>
+<%= ss %>
+<form class="vote" method ="post" action ="/question/<%= q.id %>/downvote">
+<button type="submit" class="btn-vote"><span class="glyphicon glyphicon-chevron-down"></span></button>
+</form>
     <br></td>
 </tr>
 
@@ -74,6 +80,3 @@
 <% end %>
 
 </table>
-
-
-<hr class="style7">

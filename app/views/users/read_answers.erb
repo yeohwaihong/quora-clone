@@ -3,7 +3,7 @@
 <h4 class="answer-count">Top Stories For You</h4>
 <table>
 <tr>
-<% Answer.order('created_at DESC').each.with_index do |a, index| %>
+<% Answer.select("answers.*, SUM(CASE WHEN answer_votes.value = 'up' THEN 1 WHEN answer_votes.value = 'down' THEN -1 ELSE 0 END) vote_count").joins('LEFT JOIN answer_votes ON answers.id = answer_votes.answer_id').group("answers.id").order("vote_count DESC").each.with_index do |a, index| %>
 <td class='user_answer'>
   <div class= "username_time">
   Answer</div>
@@ -14,8 +14,14 @@
     <%= a.answer %>
   </div>
   <br />
-  <input type="button" class="btn-vote" value="Upvote">
-  <input type="button" class="btn-vote" value="Downvote">
+  <form class="vote" method ="post" action ="/answer/<%= a.id %>/vote">
+  <button type="submit" class="btn-vote"><span class="glyphicon glyphicon-chevron-up"></span></button>
+  </form>
+  <% ss = AnswerVote.where(answer_id: a.id, value: 'up').count - AnswerVote.where(answer_id: a.id, value: 'down').count %>
+  <%= ss %>
+  <form class="vote" method ="post" action ="/answer/<%= a.id %>/downvote">
+  <button type="submit" class="btn-vote"><span class="glyphicon glyphicon-chevron-down"></span></button>
+  </form>
   <br />
 </td>
 </tr>
